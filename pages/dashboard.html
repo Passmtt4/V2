@@ -1,0 +1,784 @@
+<!-- 
+    Prototipo de sitio web para la empresa de software "Prototipo aplicativo de mantenimiento".
+    Creado por: [Giovanni Balza]
+    Fecha: [Fecha de creación]
+    Versión: 1.0
+    Descripción: Este prototipo muestra una estrucutra basica de un aplicativo de mantenimiento, es una representacion interactiva de la aplicacion de a donde queremos llegar.
+ -->
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mantenimiento - Elite Flower</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-left">
+            <button class="menu-toggle" aria-label="Menú desplegable">&#9776;</button>
+            <span class="header-title font-primary">Mantenimiento</span>
+        </div>
+        <div class="header-right">
+            <div class="language-selector" title="Cambiar idioma / Change language">
+                <div class="current-language flag-colombia">
+                    <svg width="28" height="20" viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="28" height="20" fill="#FCD116" />
+                        <rect y="13.33" width="28" height="6.67" fill="#003893" />
+                        <rect y="16.67" width="28" height="3.33" fill="#CE1126" />
+                    </svg>
+                    <span class="lang-code">ES</span>
+                </div>
+                <div class="language-dropdown">
+                    <div class="language-option" data-lang="es">
+                        <svg width="28" height="20" viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="28" height="20" fill="#FCD116" />
+                            <rect y="13.33" width="28" height="6.67" fill="#003893" />
+                            <rect y="16.67" width="28" height="3.33" fill="#CE1126" />
+
+                        </svg>
+                        <span>Español</span>
+                    </div>
+                    <div class="language-option" data-lang="en">
+                        <svg width="28" height="20" viewBox="0 0 28 20" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="28" height="20" fill="#012169" />
+                            <path d="M0,0 L28,20 M28,0 L0,20" stroke="#FFFFFF" stroke-width="2" />
+                            <path d="M14,0 L14,20 M0,10 L28,10" stroke="#FFFFFF" stroke-width="4" />
+                            <path d="M14,0 L14,20 M0,10 L28,10" stroke="#C8102E" stroke-width="2" />
+                        </svg>
+                        <span>English</span>
+                    </div>
+                </div>
+            </div>
+            <div class="user-session">
+                <div class="user-session-info">
+                    <span class="user-icon">
+                        <img src="css/images/by customer-morado-32px-03.svg" alt="Usuario" width="24" height="24">
+                    </span>
+                    <span class="user-name font-secondary">Nombre del usuario</span>
+                    <span class="user-menu">▼</span>
+                </div>
+                <div class="user-dropdown">
+                    <div class="user-dropdown-item" id="profile-link">
+                        <span class="user-dropdown-icon">
+                            <img src="css/images/by customer-morado-32px-03.svg" alt="Perfil" width="24" height="24">
+                        </span>
+                        <span class="user-dropdown-text">Mi Perfil</span>
+                    </div>
+                    <div class="user-dropdown-item" id="settings-link">
+                        <span class="user-dropdown-icon">&#9881;</span>
+                        <span class="user-dropdown-text">Configuración</span>
+                    </div>
+                    <div class="user-dropdown-divider"></div>
+                    <div class="user-dropdown-item" id="logout-btn">
+                        <span class="user-dropdown-icon">&#9212;</span>
+                        <span class="user-dropdown-text">Cerrar Sesión</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <aside class="sidebar" id="sidebar">
+        <div class="farm-info">
+            <div class="farm-logo">
+                <img src="css/images/elite flower-morado-64px-05.svg" alt="Elite Flower" width="24" height="24">
+            </div>
+            <div class="farm-details">
+                <h3 class="farm-name font-primary">Elite flower</h3>
+                <p class="farm-title font-secondary">Finca</p>
+            </div>
+        </div>
+        <div class="farm-selector">
+            <div class="farm-selector-label font-primary">Finca:</div>
+            <div class="farm-dropdown">
+                <button class="farm-dropdown-btn font-secondary">
+                    <span>Elite Flower</span>
+                    <span class="dropdown-icon">▼</span>
+                </button>
+                <div class="farm-dropdown-content">
+                    <a href="#" class="font-secondary">Elite Flower</a>
+                    <a href="#" class="font-secondary">Finca Santa maria </a>
+                    <a href="#" class="font-secondary">Finca La nena </a>
+                    <a href="#" class="font-secondary">Finca El morado</a>
+                </div>
+            </div>
+        </div>
+        <nav class="sidebar-menu">
+            <ul class="sidebar-menu">
+                <li>
+                    <a href="#dashboard" class="sidebar-link font-primary active" data-section="dashboard">
+                        <span class="sidebar-icon">
+                            <img src="css/images/dashboard-morado-32px-03.svg" alt="Dashboard" width="24" height="24">
+                        </span>
+                        <span class="sidebar-text">Dashboard</span>
+                        <span class="sidebar-tooltip">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#plasticos" class="sidebar-link font-primary" data-section="plasticos">
+                        <span class="sidebar-icon">
+                            <img src="css/images/by location-morado-32px-03.svg" alt="Plásticos" width="24" height="24">
+                        </span>
+                        <span class="sidebar-text">Plásticos</span>
+                        <span class="sidebar-tooltip">Plásticos</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#reservorios" class="sidebar-link font-primary" data-section="reservorios">
+                        <span class="sidebar-icon">
+                            <img src="css/images/rutas & georeferencia-morado-32px-03.svg" alt="Reservorios" width="24" height="24">
+                        </span>
+                        <span class="sidebar-text">Reservorios</span>
+                        <span class="sidebar-tooltip">Reservorios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#notas" class="sidebar-link font-primary" data-section="notas">
+                        <span class="sidebar-icon">
+                            <img src="css/images/planos-morado-32px-03.svg" alt="Notas" width="24" height="24">
+                        </span>
+                        <span class="sidebar-text">Notas</span>
+                        <span class="sidebar-tooltip">Notas</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#sgmwin" class="sidebar-link font-primary" data-section="sgmwin">
+                        <span class="sidebar-icon">
+                            <img src="css/images/sistemas it-morado-32px-03.svg" alt="SGMWIN" width="24" height="24">
+                        </span>
+                        <span class="sidebar-text">SGMWIN</span>
+                        <span class="sidebar-tooltip">SGMWIN</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">
+            <span class="sidebar-version font-secondary">© 2024 Prototipo web. v0.1.0 </span>
+        </div>
+    </aside>
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard-section" class="content-section active">
+            <h2 class="section-title font-primary">Dashboard</h2>
+            <div class="dashboard-grid">
+                <div class="dashboard-card card">
+                    <div class="dashboard-card-header">
+                        <h3 class="font-primary">Resumen de actividad</h3>
+                    </div>
+                    <div class="dashboard-card-body">
+                        <div class="dashboard-stat">
+                            <span class="stat-value">24</span>
+                            <span class="stat-label">Tareas pendientes</span>
+                        </div>
+                        <div class="dashboard-stat">
+                            <span class="stat-value">18</span>
+                            <span class="stat-label">Completadas hoy</span>
+                        </div>
+                        <div class="dashboard-stat">
+                            <span class="stat-value">6</span>
+                            <span class="stat-label">Alertas</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Plásticos Section -->
+        <section id="plasticos-section" class="content-section">
+            <h2 class="section-title font-primary">Plásticos</h2>
+            <div class="info-box card">
+                <div class="section-header">
+                    <h3 class="font-primary">Gestión de plásticos</h3>
+                    <button class="btn btn-primary">Nuevo registro</button>
+                </div>
+                <div class="data-table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tipo</th>
+                                <th>Bloque</th>
+                                <th>Tipo de cultivo</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>PL-001</td>
+                                <td>Polietileno</td>
+                                <td>Bloque 1</td>
+                                <td>Rosas</td>
+                                <td><span class="status-badge status-ok">Activo</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn">Editar</button>
+                                    <button class="action-btn delete-btn">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PL-002</td>
+                                <td>PVC</td>
+                                <td>Bloque 2</td>
+                                <td>Claveles</td>
+                                <td><span class="status-badge status-warning">Mantenimiento</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn">Editar</button>
+                                    <button class="action-btn delete-btn">Eliminar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>PL-003</td>
+                                <td>Polipropileno</td>
+                                <td>Bloque 3</td>
+                                <td>Hortensias</td>
+                                <td><span class="status-badge status-ok">Activo</span></td>
+                                <td>
+                                    <button class="action-btn edit-btn">Editar</button>
+                                    <button class="action-btn delete-btn">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="map-container card">
+                    <div class="section-header">
+                        <h3 class="font-primary">Mapa de ubicaciones</h3>
+                        <button class="btn btn-secondary">Actualizar vista</button>
+                    </div>
+                    <div class="map-content">
+                        <div id="plastics-map" class="map-view">
+                            <div id="map"></div>
+                        </div>
+                        <div class="map-legend">
+                            <h4>Leyenda</h4>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #4CAF50;"></span>
+                                <span>Plásticos activos</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #FFC107;"></span>
+                                <span>En mantenimiento</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background-color: #F44336;"></span>
+                                <span>Necesita atención</span>
+                            </div>
+                            <a href="historial-mantenimientos.html" class="btn btn-primary" style="width: 100%; margin-top: 1rem; display: inline-block; text-align: center; text-decoration: none;">
+                                Ver más detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reservorios Section -->
+        <section id="reservorios-section" class="content-section">
+            <h2 class="section-title font-primary">Reservorios</h2>
+            <div class="info-box card">
+                <div class="section-header">
+                    <h3 class="font-primary">Control de reservorios</h3>
+                    <button class="btn btn-primary">Agregar reservorio</button>
+                </div>
+                <div class="reservorios-container">
+                    <div class="reservorios-list">
+                        <div class="reservorio-card">
+                            <div class="reservorio-header">
+                                <h4>Reservorio #1</h4>
+                                <span class="status-badge status-ok">Operativo</span>
+                            </div>
+                            <div class="reservorio-body">
+                                <div class="reservorio-stat">
+                                    <span class="stat-label">Capacidad:</span>
+                                    <span class="stat-value">5000L</span>
+                                </div>
+                                <div class="reservorio-stat">
+                                    <span class="stat-label">Nivel actual:</span>
+                                    <span class="stat-value">78%</span>
+                                </div>
+                                <div class="reservorio-stat">
+                                    <span class="stat-label">Temperatura:</span>
+                                    <span class="stat-value">22°C</span>
+                                </div>
+                                <div class="reservorio-controls">
+                                    <a href="control-reservorios.html" class="btn btn-secondary" style="text-decoration: none; display: inline-block;">Detalles</a>
+                                    <button class="btn btn-primary">Monitorear</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reservorio-card">
+                            <div class="reservorio-header">
+                                <h4>Reservorio #2</h4>
+                                <span class="status-badge status-warning">Mantenimiento</span>
+                            </div>
+                            <div class="reservorio-body">
+                                <div class="reservorio-stat">
+                                    <span class="stat-label">Capacidad:</span>
+                                    <span class="stat-value">3000L</span>
+                                </div>
+                                <div class="reservorio-stat">
+                                    <span class="stat-label">Nivel actual:</span>
+                                    <span class="stat-value">45%</span>
+                                </div>
+                                <div class="reservorio-stat">
+                                    <span class="stat-label">Temperatura:</span>
+                                    <span class="stat-value">24°C</span>
+                                </div>
+                                <div class="reservorio-controls">
+                                    <a href="control-reservorios.html" class="btn btn-secondary" style="text-decoration: none; display: inline-block;">Detalles</a>
+                                    <button class="btn btn-primary">Monitorear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reservorios-map">
+                        <div class="map-container">
+                            <div class="section-header">
+                                <h3 class="font-primary">Ubicación de reservorios</h3>
+                            </div>
+                            <div class="map-view">
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3789.476546483983!2d-74.32202323557733!3d4.7735715922560304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses!2sco!4v1748486641808!5m2!1ses!2sco"
+                                    width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade">
+                                </iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notas Section -->
+        <section id="notas-section" class="content-section">
+            <h2 class="section-title font-primary">Notas</h2>
+            <div class="info-box card">
+                <div class="section-header">
+                    <h3 class="font-primary">Notas y recordatorios</h3>
+                    <button class="btn btn-primary">Nueva nota</button>
+                </div>
+                <div class="notas-container">
+                    <div class="nota-card">
+                        <div class="nota-header">
+                            <h4>Mantenimiento programado</h4>
+                            <span class="nota-date">28/05/2025</span>
+                        </div>
+                        <div class="nota-body">
+                            <p>Realizar mantenimiento preventivo en el sistema de reservorios del Sector B. Coordinar
+                                con el equipo técnico.</p>
+                        </div>
+                        <div class="nota-footer">
+                            <span class="nota-priority high">Alta</span>
+                            <div class="nota-actions">
+                                <button class="action-btn edit-btn">Editar</button>
+                                <button class="action-btn delete-btn">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nota-card">
+                        <div class="nota-header">
+                            <h4>Reunión de equipo</h4>
+                            <span class="nota-date">30/05/2025</span>
+                        </div>
+                        <div class="nota-body">
+                            <p>Reunión de coordinación con el equipo de mantenimiento a las 10:00 AM en la sala de
+                                conferencias.</p>
+                        </div>
+                        <div class="nota-footer">
+                            <span class="nota-priority medium">Media</span>
+                            <div class="nota-actions">
+                                <button class="action-btn edit-btn">Editar</button>
+                                <button class="action-btn delete-btn">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- SGMWIN Section -->
+        <section id="sgmwin-section" class="content-section">
+            <h2 class="section-title font-primary">SGMWIN</h2>
+            <div class="info-box card">
+                <div class="section-header">
+                    <h3 class="font-primary">Integración con SGMWIN</h3>
+                </div>
+                <div class="section-body">
+                    <p>Aqui se hara la integración con los sistemas existentes de SGMWIN.</p>
+                    <img src="css/images/SGMWIN.jpg" alt="Listado de solicitudes en SGMWIN" style="max-width: 100%; height: auto;">
+                    <div style="text-align: center; margin-top: 20px;">
+                        <a href="https://mantenimiento.eliteflower.com/" class="btn btn-primary" style="display: inline-block; text-decoration: none;">Ir a SGMWIN</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/main.js"></script>
+
+    <!-- Agregar los recursos de QGIS Web antes del cierre del body -->
+    <link rel="stylesheet" href="qgis2web_2025_06_06-13_29_29_657662/resources/ol.css">
+    <link rel="stylesheet" href="qgis2web_2025_06_06-13_29_29_657662/resources/ol-layerswitcher.css">
+    <link rel="stylesheet" href="qgis2web_2025_06_06-13_29_29_657662/resources/qgis2web.css">
+    
+    <style>
+    #map {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    .ol-popup {
+        position: absolute;
+        background-color: white;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        padding: 0;
+        border-radius: 10px;
+        border: 1px solid #cccccc;
+        bottom: 12px;
+        left: -50px;
+        min-width: 280px;
+        font-family: Arial, sans-serif;
+    }
+    .ol-popup:after, .ol-popup:before {
+        top: 100%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
+    .ol-popup:after {
+        border-top-color: white;
+        border-width: 10px;
+        left: 48px;
+        margin-left: -10px;
+    }
+    .ol-popup:before {
+        border-top-color: #cccccc;
+        border-width: 11px;
+        left: 48px;
+        margin-left: -11px;
+    }
+    .ol-popup-closer {
+        text-decoration: none;
+        position: absolute;
+        top: 8px;
+        right: 8px;
+        color: #666;
+        font-size: 16px;
+        font-weight: bold;
+        z-index: 1;
+    }
+    .ol-popup-closer:hover {
+        color: #000;
+    }
+    .ol-popup-closer:after {
+        content: "✖";
+    }
+    #popup-content {
+        padding: 15px;
+    }
+    .popup-title {
+        margin: 0 0 15px 0;
+        color: #2c3e50;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 1.4;
+    }
+    .popup-info {
+        border-top: 1px solid #eee;
+        padding-top: 10px;
+    }
+    .popup-info p {
+        margin: 8px 0;
+        color: #34495e;
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    .popup-info strong {
+        color: #2c3e50;
+        font-weight: 600;
+    }
+    </style>
+    
+    <!-- Cargar OpenLayers -->
+    <script src="qgis2web_2025_06_06-13_29_29_657662/resources/ol.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/resources/ol-layerswitcher.js"></script>
+    
+    <!-- Cargar los datos de las capas -->
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/RECHIDRICO_LANENA_2.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESFU_LANENA_3.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESINVCONST_LANENA_4.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESA_LANENA_5.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESB_LANENA_6.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESLN1_LANENA_7.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESFLN_LANENA_8.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESF7_LANENA_9.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/BLOQUESPROPAGACION_LANENA_10.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/FANTASYF5_LANENA_11.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/CABLEVIA_LANENA_12.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/MTL_LANENA_13.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/layers/MT_LANENA_14.js"></script>
+    
+    <!-- Cargar los estilos de las capas -->
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/RECHIDRICO_LANENA_2_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESFU_LANENA_3_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESINVCONST_LANENA_4_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESA_LANENA_5_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESB_LANENA_6_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESLN1_LANENA_7_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESFLN_LANENA_8_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESF7_LANENA_9_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/BLOQUESPROPAGACION_LANENA_10_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/FANTASYF5_LANENA_11_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/CABLEVIA_LANENA_12_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/MTL_LANENA_13_style.js"></script>
+    <script src="qgis2web_2025_06_06-13_29_29_657662/styles/MT_LANENA_14_style.js"></script>
+    
+    <script>
+        // Función para crear estilos de texto
+        function createTextStyle(feature, resolution, labelText, labelFont,
+                              labelFill, placement, bufferColor,
+                              bufferWidth) {
+            if (feature.hide || !labelText) {
+                return;
+            }
+            
+            var textStyle = new ol.style.Text({
+                font: labelFont,
+                text: labelText,
+                textBaseline: "middle",
+                textAlign: "left",
+                offsetX: 0,
+                offsetY: 0,
+                placement: placement,
+                maxAngle: 0,
+                fill: new ol.style.Fill({
+                    color: labelFill
+                }),
+                stroke: new ol.style.Stroke({
+                    color: bufferColor,
+                    width: bufferWidth
+                })
+            });
+            
+            return textStyle;
+        }
+
+        // Inicializar el mapa cuando se carga la sección de plásticos
+        document.querySelector('a[data-section="plasticos"]').addEventListener('click', function() {
+            setTimeout(function() {
+                // Crear el elemento popup
+                var container = document.getElementById('map');
+                var popup = new ol.Overlay({
+                    element: document.createElement('div'),
+                    positioning: 'bottom-center',
+                    stopEvent: false,
+                    offset: [0, -10]
+                });
+                popup.getElement().className = 'ol-popup';
+                popup.getElement().innerHTML = '<a href="#" class="ol-popup-closer"></a><div id="popup-content"></div>';
+                container.appendChild(popup.getElement());
+
+                // Cerrar el popup cuando se hace clic en el botón de cerrar
+                popup.getElement().querySelector('.ol-popup-closer').addEventListener('click', function() {
+                    popup.setPosition(undefined);
+                    return false;
+                });
+
+                // Crear el mapa base
+                var map = new ol.Map({
+                    target: 'map',
+                    layers: [
+                        new ol.layer.Tile({
+                            'title': 'OpenStreetMap',
+                            'type': 'base',
+                            'visible': true,
+                            source: new ol.source.XYZ({
+                                attributions: ' ',
+                                url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+                            })
+                        }),
+                        new ol.layer.Tile({
+                            'title': 'Google Satellite',
+                            'type': 'base',
+                            'visible': false,
+                            source: new ol.source.XYZ({
+                                attributions: ' ',
+                                url: 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
+                            })
+                        })
+                    ],
+                    view: new ol.View({
+                        center: ol.proj.fromLonLat([-74.32313868673657, 4.7811805573663095]),
+                        zoom: 15,
+                        maxZoom: 19
+                    }),
+                    controls: ol.control.defaults().extend([
+                        new ol.control.ScaleLine(),
+                        new ol.control.ZoomSlider(),
+                        new ol.control.FullScreen(),
+                        new ol.control.LayerSwitcher({
+                            tipLabel: 'Leyenda'
+                        })
+                    ]),
+                    overlays: [popup]
+                });
+
+                // Agregar las capas vectoriales
+                var vectorLayers = [
+                    {
+                        name: 'RECHIDRICO_LANENA_2',
+                        data: json_RECHIDRICO_LANENA_2,
+                        style: style_RECHIDRICO_LANENA_2
+                    },
+                    {
+                        name: 'BLOQUESFU_LANENA_3',
+                        data: json_BLOQUESFU_LANENA_3,
+                        style: style_BLOQUESFU_LANENA_3
+                    },
+                    {
+                        name: 'BLOQUESINVCONST_LANENA_4',
+                        data: json_BLOQUESINVCONST_LANENA_4,
+                        style: style_BLOQUESINVCONST_LANENA_4
+                    },
+                    {
+                        name: 'BLOQUESA_LANENA_5',
+                        data: json_BLOQUESA_LANENA_5,
+                        style: style_BLOQUESA_LANENA_5
+                    },
+                    {
+                        name: 'BLOQUESB_LANENA_6',
+                        data: json_BLOQUESB_LANENA_6,
+                        style: style_BLOQUESB_LANENA_6
+                    },
+                    {
+                        name: 'BLOQUESLN1_LANENA_7',
+                        data: json_BLOQUESLN1_LANENA_7,
+                        style: style_BLOQUESLN1_LANENA_7
+                    },
+                    {
+                        name: 'BLOQUESFLN_LANENA_8',
+                        data: json_BLOQUESFLN_LANENA_8,
+                        style: style_BLOQUESFLN_LANENA_8
+                    },
+                    {
+                        name: 'BLOQUESF7_LANENA_9',
+                        data: json_BLOQUESF7_LANENA_9,
+                        style: style_BLOQUESF7_LANENA_9
+                    },
+                    {
+                        name: 'BLOQUESPROPAGACION_LANENA_10',
+                        data: json_BLOQUESPROPAGACION_LANENA_10,
+                        style: style_BLOQUESPROPAGACION_LANENA_10
+                    },
+                    {
+                        name: 'FANTASYF5_LANENA_11',
+                        data: json_FANTASYF5_LANENA_11,
+                        style: style_FANTASYF5_LANENA_11
+                    },
+                    {
+                        name: 'CABLEVIA_LANENA_12',
+                        data: json_CABLEVIA_LANENA_12,
+                        style: style_CABLEVIA_LANENA_12
+                    },
+                    {
+                        name: 'MTL_LANENA_13',
+                        data: json_MTL_LANENA_13,
+                        style: style_MTL_LANENA_13
+                    },
+                    {
+                        name: 'MT_LANENA_14',
+                        data: json_MT_LANENA_14,
+                        style: style_MT_LANENA_14
+                    }
+                ];
+
+                vectorLayers.forEach(function(layerInfo) {
+                    var vectorLayer = new ol.layer.Vector({
+                        title: layerInfo.name,
+                        source: new ol.source.Vector({
+                            features: new ol.format.GeoJSON().readFeatures(layerInfo.data, {
+                                dataProjection: 'EPSG:4326',
+                                featureProjection: 'EPSG:3857'
+                            })
+                        }),
+                        style: layerInfo.style
+                    });
+                    map.addLayer(vectorLayer);
+                });
+
+                // Manejar el clic en el mapa
+                map.on('click', function(evt) {
+                    var feature = map.forEachFeatureAtPixel(evt.pixel, {
+                        hitTolerance: 5,
+                        layerFilter: function(layer) {
+                            return layer instanceof ol.layer.Vector;
+                        }
+                    }, function(feature) {
+                        return feature;
+                    });
+
+                    if (feature) {
+                        var properties = feature.getProperties();
+                        console.log('Feature properties:', properties); // Para depuración
+                        
+                        var content = '<div class="popup-title">';
+                        
+                        // Título del bloque
+                        if (properties.etiquet) {
+                            content += properties.etiquet.replace('\n', '<br>');
+                        }
+                        content += '</div>';
+                        
+                        // Información del bloque
+                        content += '<div class="popup-info">';
+                        
+                        // Mostrar ID y Área
+                        if (properties.id) {
+                            content += '<p><strong>ID:</strong> ' + properties.id + '</p>';
+                        }
+                        if (properties.AREA) {
+                            content += '<p><strong>Área:</strong> ' + properties.AREA.toFixed(3) + ' Ha</p>';
+                        }
+                        
+                        content += '</div>';
+                        
+                        var popupElement = document.getElementById('popup-content');
+                        if (popupElement) {
+                            popupElement.innerHTML = content;
+                            popup.setPosition(evt.coordinate);
+                        } else {
+                            console.error('No se encontró el elemento popup-content');
+                        }
+                    } else {
+                        popup.setPosition(undefined);
+                    }
+                });
+
+                // Cambiar el cursor cuando está sobre un bloque
+                map.on('pointermove', function(evt) {
+                    var pixel = map.getEventPixel(evt.originalEvent);
+                    var hit = map.hasFeatureAtPixel(pixel, {
+                        hitTolerance: 5,
+                        layerFilter: function(layer) {
+                            return layer instanceof ol.layer.Vector;
+                        }
+                    });
+                    map.getTargetElement().style.cursor = hit ? 'pointer' : '';
+                });
+
+                // Actualizar el tamaño del mapa
+                map.updateSize();
+            }, 100);
+        });
+    </script>
+</body>
+
+</html>

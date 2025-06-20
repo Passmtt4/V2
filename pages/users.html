@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Usuarios - Sistema de Mantenimiento</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/users.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="users-page">
+        <div class="users-container">
+            <button class="back-home-btn" onclick="window.location.href='../dashboard.html'">
+                <i class="fas fa-arrow-left"></i> Volver al inicio
+            </button>
+            <!-- Header -->
+            <header class="users-header">
+                <div class="header-content">
+                    <div class="header-title">
+                        <h1><i class="fas fa-users"></i> Administración de Usuarios</h1>
+                        <p>Gestiona los usuarios del sistema y sus permisos</p>
+                    </div>
+                    <div class="header-actions">
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-file-export"></i> Exportar
+                        </button>
+                        <button class="btn btn-secondary">
+                            <i class="fas fa-file-import"></i> Importar
+                        </button>
+                        <button class="btn btn-primary" id="add-user-btn">
+                            <i class="fas fa-plus"></i> Nuevo Usuario
+                        </button>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="total-users">0</div>
+                        <div class="stat-label">Total Usuarios</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon active">
+                        <i class="fas fa-user-check"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="active-users">0</div>
+                        <div class="stat-label">Usuarios Activos</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon inactive">
+                        <i class="fas fa-user-times"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="inactive-users">0</div>
+                        <div class="stat-label">Usuarios Inactivos</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon pending">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <div class="stat-number" id="pending-users">0</div>
+                        <div class="stat-label">Usuarios Pendientes</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filters Section -->
+            <section class="filters-section">
+                <div class="filters-grid">
+                    <div class="form-group">
+                        <label for="search-input">Buscar</label>
+                        <div class="search-container">
+                            <i class="fas fa-search"></i>
+                            <input type="text" id="search-input" class="form-control" placeholder="Buscar por nombre o email...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="status-filter">Estado</label>
+                        <select id="status-filter" class="form-control">
+                            <option value="">Todos los estados</option>
+                            <option value="active">Activo</option>
+                            <option value="inactive">Inactivo</option>
+                            <option value="pending">Pendiente</option>
+                            <option value="suspended">Suspendido</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="role-filter">Rol</label>
+                        <select id="role-filter" class="form-control">
+                            <option value="">Todos los roles</option>
+                            <option value="admin">Administrador</option>
+                            <option value="asistente_zona">Asistente de Zona</option>
+                            <option value="operario">Operario</option>
+                            <option value="ingeniero_soporte">Ingeniero de Soporte</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="location-filter">Ubicación</label>
+                        <select id="location-filter" class="form-control">
+                            <option value="">Todas las ubicaciones</option>
+                            <option value="Finca La Nena">Finca La Nena</option>
+                            <option value="Finca Santa María">Finca Santa María</option>
+                            <option value="Finca El Morado">Finca El Morado</option>
+                            <option value="Finca Florex">Finca Florex</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Table -->
+            <div class="table-container">
+                <table class="table" id="users-table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Rol</th>
+                            <th>Estado</th>
+                            <th>Ubicación</th>
+                            <th>Última Actividad</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Los usuarios se renderizarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="user-modal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2>Agregar Usuario</h2>
+                <button class="btn btn-icon" id="close-modal">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="user-form">
+                <div class="modal-body">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="userName">Nombre Completo</label>
+                            <input type="text" id="userName" class="form-control" value="Ricardo Soto" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userEmail">Email</label>
+                            <input type="email" id="userEmail" class="form-control" value="ricardo.soto@fincalanena.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPhone">Teléfono</label>
+                            <input type="tel" id="userPhone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="userCode">Código</label>
+                            <input type="text" id="userCode" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="userRole">Rol</label>
+                            <select id="userRole" class="form-control" required>
+                                <option value="">Seleccionar rol</option>
+                                <option value="admin">Administrador</option>
+                                <option value="asistente_zona">Asistente de Zona</option>
+                                <option value="operario">Operario</option>
+                                <option value="ingeniero_soporte" selected>Ingeniero de Soporte</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userStatus">Estado</label>
+                            <select id="userStatus" class="form-control" required>
+                                <option value="">Seleccionar estado</option>
+                                <option value="active" selected>Activo</option>
+                                <option value="inactive">Inactivo</option>
+                                <option value="pending">Pendiente</option>
+                                <option value="suspended">Suspendido</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userLocation">Ubicación</label>
+                            <select id="userLocation" class="form-control" required>
+                                <option value="">Seleccionar ubicación</option>
+                                <option value="Finca La Nena" selected>Finca La Nena</option>
+                                <option value="Finca Santa María">Finca Santa María</option>
+                                <option value="Finca El Morado">Finca El Morado</option>
+                                <option value="Finca Florex">Finca Florex</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="userPermissions">Permisos</label>
+                            <div class="permissions-grid">
+                                <div class="permission-item">
+                                    <input type="checkbox" id="viewPermission" checked>
+                                    <label for="viewPermission">Visualización</label>
+                                </div>
+                                <div class="permission-item">
+                                    <input type="checkbox" id="editPermission" checked>
+                                    <label for="editPermission">Edición</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group form-grid full">
+                        <label for="notes">Notas</label>
+                        <textarea id="notes" name="notes" class="form-control" rows="3"></textarea>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancelar</button>
+                    <button type="button" class="btn btn-danger" onclick="deleteUser()">Eliminar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/users.js"></script>
+</body>
+</html> 
