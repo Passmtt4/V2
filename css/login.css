@@ -1,0 +1,226 @@
+/* Estilos específicos para la página de login */
+.login-page {
+    min-height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--background-color);
+}
+
+.login-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    background-color: white;
+    overflow: hidden;
+}
+
+.login-left {
+    flex: 1;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    color: var(--primary-color);
+    position: relative;
+}
+
+.login-left::before {
+    display: none;
+}
+
+.login-brand {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    margin-top: 3.5rem;
+}
+
+.login-brand h1,
+.login-brand p {
+    color: var(--primary-color);
+    text-shadow: none;
+}
+
+.login-brand h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+}
+
+.login-brand p {
+    font-size: 1.5rem;
+    opacity: 0.9;
+}
+
+.login-right {
+    flex: 1;
+    padding: 3rem;
+    display: flex;
+    align-items: center;
+    background-color: white;
+}
+
+.login-form-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.login-header h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.login-header p {
+    color: var(--dark-color);
+    opacity: 0.8;
+    font-size: 1.1rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--dark-color);
+    font-size: 1rem;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 1rem 0.5rem 1rem 0.8rem;
+    border: 2px solid var(--neutral-color);
+    border-radius: var(--border-radius);
+    font-family: var(--font-secondary);
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(84, 83, 134, 0.1);
+}
+
+.form-control::placeholder {
+    color: #999;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.btn-block {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius);
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-block:hover {
+    background-color: #454478;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+    .login-left {
+        padding: 3rem 1rem 1rem 1rem;
+        align-items: flex-start;
+    }
+    .login-brand {
+        margin-top: 2rem;
+    }
+}
+
+.login-image {
+    display: block;
+    margin: 2rem auto 0 auto;
+    max-width: 80%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+    object-fit: cover;
+}
+
+.login-logo {
+    display: block;
+    margin: 1.5rem auto 0 auto;
+    max-width: 260px;
+    width: 90%;
+    height: auto;
+    object-fit: contain;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.right-text {
+    text-align: right;
+} 

@@ -1,0 +1,845 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+
+/* Variables globales */
+:root {
+    /* Paleta de colores corporativa */
+    --primary-color: #545386;    /* Morado Principal */
+    --secondary-color: #C2DFEA;  /* Azul Claro */
+    --accent-color: #F4C7CE;     /* Rosado Claro */
+    --neutral-color: #D8D2C4;    /* Beige */
+    --dark-color: #383A35;       /* Gris */
+    
+    /* Tipografías */
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Roboto', sans-serif;
+    
+    /* Variables de diseño */
+    --background-color: #ffffff;
+    --text-color: var(--dark-color);
+    --spacing-unit: 1rem;
+    --border-radius: 4px;
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+/* Estilos básicos de contenedores */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Estilos de encabezado */
+header {
+    padding: var(--spacing-unit) 0;
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Estilos del contenido principal */
+main {
+    min-height: calc(100vh - 160px);
+    padding: calc(var(--spacing-unit) * 2) 0;
+}
+
+/* Estilos del pie de página */
+footer {
+    padding: var(--spacing-unit) 0;
+    background-color: var(--dark-color);
+    color: white;
+    text-align: center;
+}
+
+/* Componentes UI */
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: var(--border-radius);
+    font-family: var(--font-primary);
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: var(--dark-color);
+}
+
+.card {
+    background-color: white;
+    border-radius: var(--border-radius);
+    padding: var(--spacing-unit);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Utilidades de texto */
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-accent { color: var(--accent-color); }
+.text-neutral { color: var(--neutral-color); }
+.text-dark { color: var(--dark-color); }
+
+/* Utilidades de tipografía */
+.font-primary { font-family: var(--font-primary); }
+.font-secondary { font-family: var(--font-secondary); }
+
+/* Estilos para los tooltips de los módulos */
+.sidebar-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-link:hover {
+    background-color: rgba(84, 83, 134, 0.1);
+}
+
+.sidebar-tooltip {
+    position: fixed;
+    background-color: white;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 9999;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.sidebar-tooltip::before {
+    content: '';
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent #e0e0e0 transparent transparent;
+}
+
+.sidebar-link:hover .sidebar-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ajustes para dispositivos móviles */
+@media (max-width: 768px) {
+    .sidebar-tooltip {
+        display: none;
+    }
+} 
+
+/* Estilos para el contenedor del mapa y botón de pantalla completa */
+.map-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.map-container:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+}
+
+.fullscreen-btn {
+    position: absolute;
+    top: 0.5rem;
+    left: 0.5rem;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    border-radius: 4px;
+    padding: 0.75rem;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+    margin-top: 90px; /* Ajustado para estar debajo de los controles de zoom */
+}
+
+.fullscreen-btn:hover {
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.fullscreen-btn i {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Ajustar el panel de capas cuando está en pantalla completa */
+.map-container:fullscreen .layer-switcher {
+    top: 1rem;
+    right: 1rem;
+}
+
+/* Ajustar la leyenda cuando está en pantalla completa */
+.map-container:fullscreen .map-legend {
+    top: 1rem;
+    right: 320px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* Estilos para el mapa de QGIS */
+.map-view {
+    position: relative;
+    width: 100%;
+    height: 600px; /* Altura fija para el contenedor del mapa */
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.ol-control {
+    background-color: rgba(255,255,255,.4) !important;
+    padding: 2px !important;
+    z-index: 2;
+}
+
+.ol-control > * {
+    background-color: #f8f8f8 !important;
+    color: #444444 !important;
+    border-radius: 0px;
+}
+
+.ol-attribution {
+    background-color: rgba(255,255,255,.4) !important;
+    padding: 2px !important;
+    z-index: 2;
+}
+
+.ol-attribution a {
+    color: #444444 !important;
+}
+
+/* Estilos para el popup de información */
+.ol-popup {
+    position: absolute;
+    background-color: white;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px solid #cccccc;
+    bottom: 12px;
+    left: -50px;
+    min-width: 280px;
+    max-width: 400px;
+}
+
+.ol-popup:after, .ol-popup:before {
+    top: 100%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+
+.ol-popup:after {
+    border-top-color: white;
+    border-width: 10px;
+    left: 48px;
+    margin-left: -10px;
+}
+
+.ol-popup:before {
+    border-top-color: #cccccc;
+    border-width: 11px;
+    left: 48px;
+    margin-left: -11px;
+}
+
+.ol-popup-closer {
+    text-decoration: none;
+    position: absolute;
+    top: 2px;
+    right: 8px;
+    color: #666;
+    font-size: 1.2em;
+}
+
+.ol-popup-closer:hover {
+    color: #000;
+}
+
+.popup-content {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.popup-content p {
+    margin: 5px 0;
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.popup-content p:last-child {
+    border-bottom: none;
+}
+
+.popup-content strong {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Estilos para el selector de capas */
+.layer-switcher {
+    position: absolute !important;
+    top: 1em;
+    right: 1em;
+    z-index: 10;
+    background: rgba(255,255,255,0.95);
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    padding: 0.5em 1em;
+    max-width: 300px;
+    font-size: 1em;
+}
+
+.layer-switcher .panel {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.layer-switcher .panel li {
+    padding: 0.25em 0;
+}
+
+.layer-switcher .panel input {
+    margin: 0 0.5em 0 0;
+}
+
+/* Estilos para la sección de Administración de Consumo */
+.filter-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.filter-label {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.filter-select {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: white;
+    font-size: 0.875rem;
+    color: var(--text-color);
+    min-width: 150px;
+    transition: all 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(128, 0, 128, 0.25);
+}
+
+.account-cell {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.reading-cell {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.date-cell {
+    color: var(--text-secondary);
+}
+
+.empty-cell {
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.actions-cell {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+/* Animaciones para notificaciones */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .filter-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .actions-cell {
+        flex-direction: column;
+    }
+
+    .btn {
+        min-width: 60px;
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+} 
+
+/* Estilos para el módulo de Administración de Consumo */
+.nav-tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.nav-tab {
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    color: #6c757d;
+    transition: all 0.2s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-tab:hover {
+    color: #495057;
+    background: #e9ecef;
+}
+
+.nav-tab.active {
+    color: #007bff;
+    border-bottom-color: #007bff;
+    background: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.predios-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.predios-table th {
+    background: #f8f9fa;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    white-space: nowrap;
+}
+
+.predios-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.predios-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.empty-cell {
+    color: #adb5bd;
+    font-style: italic;
+}
+
+/* Estilos del calendario */
+.calendar-container {
+    padding: 1.5rem;
+}
+
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.calendar-nav {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.calendar-nav button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    background: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.calendar-nav button:hover {
+    background: #f8f9fa;
+}
+
+.calendar-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 1px;
+    background: #dee2e6;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.calendar-day-header {
+    background: #f8f9fa;
+    padding: 0.75rem;
+    text-align: center;
+    font-weight: 600;
+    color: #495057;
+    font-size: 0.875rem;
+}
+
+.calendar-day {
+    background: white;
+    min-height: 100px;
+    padding: 0.5rem;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.calendar-day:hover {
+    background: #f8f9fa;
+}
+
+.calendar-day.other-month {
+    background: #f8f9fa;
+    color: #adb5bd;
+}
+
+.calendar-day.today {
+    background: #e3f2fd;
+}
+
+.calendar-day-number {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.calendar-event {
+    background: #007bff;
+    color: white;
+    padding: 0.125rem 0.25rem;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    margin-bottom: 0.125rem;
+    cursor: pointer;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.calendar-event.emgesa {
+    background: #28a745;
+}
+
+.calendar-event.ruitoque {
+    background: #ffc107;
+    color: #212529;
+}
+
+.calendar-event.codensa {
+    background: #dc3545;
+}
+
+/* Modal para editar lecturas */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    min-width: 400px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #495057;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 0;
+}
+
+.modal-close:hover {
+    color: #495057;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #495057;
+}
+
+.form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 0.875rem;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.btn-group {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+/* Animaciones */
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* Estilos para el modal de opciones de lecturas */
+.lecturas-list {
+    margin-bottom: 1rem;
+}
+
+.lectura-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.lectura-item:last-child {
+    border-bottom: none;
+}
+
+.lectura-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.lectura-info strong {
+    color: #495057;
+}
+
+.lectura-info span {
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+.lectura-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.no-lecturas {
+    text-align: center;
+    color: #6c757d;
+    padding: 1rem;
+    font-style: italic;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid #dee2e6;
+}
+
+/* Ajustes responsivos para el modal de opciones */
+@media (max-width: 768px) {
+    .lectura-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    
+    .lectura-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+} 
+
+/* Estilos para el modal de consulta */
+.consulta-modal .modal-content {
+    max-width: 600px;
+}
+
+.predio-info {
+    padding: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.predio-info h4 {
+    color: #495057;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-label {
+    color: #6c757d;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.info-value {
+    color: #212529;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.consulta-form {
+    padding: 1.5rem;
+    background-color: #fff;
+    border-radius: 8px;
+    border: 1px solid #dee2e6;
+}
+
+@media (max-width: 768px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .consulta-modal .modal-content {
+        margin: 1rem;
+        max-height: calc(100vh - 2rem);
+    }
+} 

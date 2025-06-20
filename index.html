@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Prototipo de mantenimiento</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/login.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .loading-screen {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-family: var(--font-primary);
+            color: #333;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-left">
+            <div class="login-brand">
+                <h1 class="font-primary">MANTENIMIENTO</h1>
+                <p class="font-secondary">Sistema de gestión</p>
+                <img src="assets/images/Flores.jpg" alt="Flores" class="login-image">
+            </div>
+        </div>
+        <div class="login-right">
+            <div class="login-form-container">
+                <div class="login-header">
+                    <h2 class="font-primary">Iniciar sesión</h2>
+                    <p class="font-secondary">Por favor ingrese sus credenciales para continuar</p>
+                    <img src="css/images/logo_elite1.webp" alt="Logo Elite Flower" class="login-logo">
+                </div>
+
+                <form class="login-form">
+                    <div class="form-group">
+                        <label for="username" class="font-secondary">Usuario</label>
+                        <input type="text" id="username" name="username" class="form-control"
+                            placeholder="Ingresa tu usuario" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="font-secondary">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control"
+                            placeholder="Ingresa tu contraseña" required>
+                    </div>
+
+                    <div class="form-options">
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember" name="remember">
+                            <label for="remember" class="font-secondary">Recordarme</label>
+                        </div>
+                        <a href="#" class="forgot-password font-secondary">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">INGRESAR</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="loading-screen">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Iniciando sesión...</p>
+    </div>
+    <script>
+        document.querySelector('.login-form')?.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            // Mostrar la pantalla de carga
+            const loadingScreen = document.querySelector('.loading-screen');
+            loadingScreen.style.display = 'flex';
+            
+            // Simular un tiempo de carga (2 segundos)
+            setTimeout(() => {
+                window.location.href = 'dashboard.html';
+            }, 2000);
+        });
+    </script>
+</body>
+
+</html>
